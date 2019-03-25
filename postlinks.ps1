@@ -18,7 +18,8 @@ if($dateFrom.Equals("")){
 	if(!$dateFrom.Equals("")){
 		Write-Verbose "Environment variable was found: $dateFrom"
 	}
-
+}
+if(!$dateFrom.Equals("")){
 	$startDateTime = [DateTime]::ParseExact($dateFrom, "yyyy-MM-ddTHH:mm:ss", $null)
 }
 
@@ -52,13 +53,24 @@ if($dateFrom.Equals("")){
 
 	$items = $itemNodes | ? {[DateTime]::Parse($_.date) -LE $endDateTime} | sort {[DateTime]::Parse($_.date)}
 }
-else {
+else{
 	Write-Verbose "Checking for links posted between: $dateFrom and $dateTo"
 
 	$items = $itemNodes | ? {[DateTime]::Parse($_.date) -gt $startDateTime} | ? {[DateTime]::Parse($_.date) -LE $endDateTime} | sort {[DateTime]::Parse($_.date)}
 }
 
-Write-Verbose "$($items.count) items selected"
+$itemCount = 0
+if($items){
+	if($items.count){
+		$itemCount = $items.Count
+	}
+	else{
+		$itemCount = 1
+	}
+}
+
+Write-Verbose "$itemCount items selected"
+
 
 if($items){
 	$tags = @()
@@ -100,6 +112,7 @@ if($items){
 	}
 	else{
 		Send-MailMessage -From $emailFrom -To $emailTo -Subject $subjectLink -Body $output -SmtpServer $smtpServer
+		Write-Verbose "Selected links have been posted"
 	}
 }
 
