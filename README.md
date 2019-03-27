@@ -25,4 +25,8 @@ You can use the "dateFrom" and/or "dateTo" parameters to override which links ar
 
 `./postlinks.ps1 -pinboardUser andrewducker -emailFrom andrew@ducker.org.uk -emailTo andrewducker+1234@post.dreamwidth.org -dateFrom 2019-03-20T12:00:00 -dateTo 2019-03-22T12:00:00`
 
+Including the "Verbose" flag will cause the script to write out informational messages, which may help if you have any trouble getting the script to work.
+
+`./postlinks.ps1 -pinboardUser andrewducker -emailFrom andrew@ducker.org.uk -emailTo andrewducker+1234@post.dreamwidth.org -Verbose`
+
 All suggestions/merge requests gratefully received.
