@@ -25,6 +25,9 @@ You can use the "dateFrom" and/or "dateTo" parameters to override which links ar
 
 `./postlinks.ps1 -pinboardUser andrewducker -emailFrom andrew@ducker.org.uk -emailTo andrewducker+1234@post.dreamwidth.org -dateFrom 2019-03-20T12:00:00 -dateTo 2019-03-22T12:00:00`
 
+The environment variable is specific to the computer that the script was run from.  So if you run the script from a computer where you didn't run it from
+the last time, you should set the "dateFrom" parameter to avoid duplicate links being posted.
+
 Including the "Verbose" flag will cause the script to write out informational messages, which may help if you have any trouble getting the script to work.
 
 `./postlinks.ps1 -pinboardUser andrewducker -emailFrom andrew@ducker.org.uk -emailTo andrewducker+1234@post.dreamwidth.org -Verbose`
